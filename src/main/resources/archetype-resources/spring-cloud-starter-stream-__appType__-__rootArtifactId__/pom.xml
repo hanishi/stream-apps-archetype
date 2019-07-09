@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-cloud-starter-stream-${appType}-${rootArtifactId}</artifactId>
+    <packaging>jar</packaging>
+    <name>spring-cloud-starter-stream-${appType}-${rootArtifactId}</name>
+    <description>Spring Cloud Stream ${rootArtifactId}-${appType} core</description>
+
+    <parent>
+        <groupId>org.springframework.cloud.stream.app</groupId>
+        <artifactId>${rootArtifactId}-app-starters-build</artifactId>
+        <version>${version}</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-app-starter-doc-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.cloud.stream.app.plugin</groupId>
+                <artifactId>spring-cloud-stream-app-maven-plugin</artifactId>
+                <configuration>
+                    <generatedProjectHome>${session.executionRootDirectory}/apps</generatedProjectHome>
+                    <generatedProjectVersion>${project.version}</generatedProjectVersion>
+                    <bom>
+                        <name>scs-bom</name>
+                        <groupId>org.springframework.cloud.stream.app</groupId>
+                        <artifactId>${rootArtifactId}-app-dependencies</artifactId>
+                        <version>${project.version}</version>
+                    </bom>
+                    <generatedApps>
+                        <${rootArtifactId}-${appType}/>
+                    </generatedApps>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
